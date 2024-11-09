@@ -1,0 +1,25 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+    <h1 class="text-black-50 font-weight-bold">Agregar Nuevo Accesorio</h1>
+    
+    <form action="{{ url_for('accesorio.nuevo_accesorio') }}" method="post">
+        <div class="form-group">
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="tipo" name="tipo" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="compatible_con">Compatibilidad:</label>
+            <input type="text" id="compatible_con" name="compatible_con" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="proveedor">Proveedor:</label>
+            <select id="proveedor" name="proveedor" class="form-control" required>
+                {% for proveedor in proveedores %}
+                    <option value="{{ proveedor.id }}">{{ proveedor.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+{% endblock %}

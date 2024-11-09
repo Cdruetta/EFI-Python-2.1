@@ -1,0 +1,33 @@
+{% extends "template_base.html" %}
+
+{% block title %}Modelos{% endblock %}
+
+{% block content %}
+    <h1 class="text-black-50 font-weight-bold">Modelos</h1>
+    <p class="text-secondary font-weight-bold">Gestiona los modelos en el sistema.</p>
+    
+    <!-- Botón para agregar un nuevo modelo -->
+    <a href="{{ url_for('modelo.nuevo_modelo') }}" class="btn btn-primary mb-3">Agregar Modelo</a>
+    
+    <!-- Tabla para mostrar los modelos -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for modelo in modelos %}
+            <tr>
+                <td>{{ modelo.id }}</td>
+                <td>{{ modelo.nombre }}</td>
+                <td>
+                    <a href="{{ url_for('modelo.editar_modelo', id=modelo.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

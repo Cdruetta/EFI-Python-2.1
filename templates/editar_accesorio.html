@@ -1,0 +1,27 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+    <h1 class="text-black-50 font-weight-bold">Editar Accesorio</h1>
+    
+    <form action="{{ url_for('accesorio.editar_accesorio', id=accesorio.id) }}" method="post">
+        <div class="form-group">
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="tipo" name="tipo" class="form-control" value="{{ accesorio.tipo }}" required>
+        </div>
+        <div class="form-group">
+            <label for="compatible_con">Compatibilidad:</label>
+            <input type="text" id="compatible_con" name="compatible_con" class="form-control" value="{{ accesorio.compatible_con }}">
+        </div>
+        <div class="form-group">
+            <label for="proveedor">Proveedor:</label>
+            <select id="proveedor" name="proveedor" class="form-control" required>
+                {% for proveedor in proveedores %}
+                    <option value="{{ proveedor.id }}" {% if proveedor.id == accesorio.proveedor_id %}selected{% endif %}>
+                        {{ proveedor.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+{% endblock %}
